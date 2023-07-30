@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"flag"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"unbabel-challenge/internal/models"
@@ -21,17 +20,16 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	var tr []models.Translation
-	err = json.Unmarshal(translation_file, &tr)
-	fmt.Println(tr)
+	var translationList []models.Translation
+	err = json.Unmarshal(translation_file, &translationList)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	//Start cleaning events by truncating time and keeping only the duration
 	var truncatedTimeDurationList []models.TruncatedTimeAndDuration
-	for i := range tr {
-		truncatedTimeDuration := tr[i].FormatToTimeAndDuration()
+	for i := range translationList {
+		truncatedTimeDuration := translationList[i].FormatToTimeAndDuration()
 		truncatedTimeDurationList = append(truncatedTimeDurationList, truncatedTimeDuration)
 	}
 
