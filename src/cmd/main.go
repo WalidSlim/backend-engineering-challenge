@@ -25,9 +25,7 @@ func main() {
 	err = json.Unmarshal(translation_file, &tr)
 	fmt.Println(tr)
 	if err != nil {
-		fmt.Println("chikoubi")
 		log.Fatal(err)
-		fmt.Println("chikoubi")
 	}
 
 	//Start cleaning events by truncating time and keeping only the duration
@@ -51,7 +49,6 @@ func main() {
 	}
 	a, err := json.MarshalIndent(resultList, "", " ")
 	if err != nil {
-		fmt.Println("meow")
 		log.Fatal(err)
 	}
 	_ = ioutil.WriteFile("outputfile.json", a, 0644)
